@@ -20,8 +20,7 @@
                                          (name (:name (meta command)))))
                                     commands))]
       (try (apply command arguments)
-           (finally Exception
-                    (.flush *out*)
+           (finally (.flush *out*)
                     (shutdown-agents)))
 
       (do (println "Usage:")
