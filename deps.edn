@@ -1,2 +1,3 @@
 {:paths ["."]
- :deps {babashka/process {:mvn/version "0.3.11"}}}
+ :deps {babashka/process {:mvn/version "0.3.11"}
+        org.openjfx/javafx-controls {:mvn/version "23-ea+3"}}}

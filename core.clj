@@ -1,17 +1,16 @@
 (ns core
-  (:require [clojure.string :as string]
-            [babashka.process :as process]
-            clipboard))
-
-(defn notify-completion! []
-  (process/process "afplay /System/Library/Sounds/Ping.aiff")
-  (process/process "osascript -e 'display notification \"ready\""))
+  (:require
+   [clipboard]
+   [clojure.string :as string]
+   [common]
+   [jira :as jira]))
 
 (defn convert-clipboard-to-plain-text []
-  (clipboard/spit-clipboard (string/trim (clipboard/slurp-clipboard)))
-  (notify-completion!))
+  (clipboard/spit-plain-text-to-clipboard (string/trim (clipboard/slurp-plain-text-from-clipboard)))
+  (common/notify-completion!))
 
-(def commands [#'convert-clipboard-to-plain-text])
+(def commands [#'convert-clipboard-to-plain-text
+               #'jira/clean-up-jira-issue-title-in-clipboard])
 
 (defn -main [& command-line-arguments]
   (let [[command-name & arguments] command-line-arguments]
