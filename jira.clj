@@ -21,7 +21,7 @@
 (defn clean-up-jira-issue-title-in-clipboard []
   (clipboard/spit-html-to-clipboard (str "<a href=\"" (href-from-jira-issue-html (clipboard/slurp-html-from-clipboard)) "\">"
                                          (clean-up-jira-issue-title (clipboard/slurp-plain-text-from-clipboard))
-                                         "<\\a>")
+                                         "</a>")
                                     (clean-up-jira-issue-title (clipboard/slurp-plain-text-from-clipboard)))
   (common/notify-completion!)
   (System/exit 0))

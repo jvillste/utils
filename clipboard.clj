@@ -8,6 +8,9 @@
 (try (Platform/startup (fn []))
      (catch Exception _exception))
 
+(defn exit []
+  (Platform/exit))
+
 (defn slurp-plain-text-from-clipboard []
   (.getTransferData (.getContents (.getSystemClipboard (Toolkit/getDefaultToolkit))
                                   nil)
