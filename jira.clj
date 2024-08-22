@@ -5,7 +5,7 @@
             common))
 
 (defn- clean-up-jira-issue-title [text]
-  (string/join " " (rest (re-find #"([^\s]+)\s+(.*)" text))))
+  (last (string/split-lines text)))
 
 (deftest test-clean-up-jira-issue-title
   (is (= "IT-123 We have a big issue"
