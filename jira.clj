@@ -5,7 +5,10 @@
             common))
 
 (defn- clean-up-jira-issue-title [text]
-  (last (string/split-lines text)))
+  (let [lines (string/split-lines text)]
+   (str (first lines)
+        " "
+        (last lines))))
 
 (deftest test-clean-up-jira-issue-title
   (is (= "IT-123 We have a big issue"
