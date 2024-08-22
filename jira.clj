@@ -18,8 +18,8 @@
   (first (rest (re-find #"href=\"([^\"]+)" html))))
 
 (deftest test-href-from-jira-issue-html
-  (is (= "https://postinext.atlassian.net/browse/DET-715"
-         (href-from-jira-issue-html "issue.item\" href=\"https://postinext.atlassian.net/browse/DET-715\" tabindex=\"0\""))))
+  (is (= "https://example.atlassian.net/browse/DET-715"
+         (href-from-jira-issue-html "issue.item\" href=\"https://example.atlassian.net/browse/DET-715\" tabindex=\"0\""))))
 
 (defn clean-up-jira-issue-title-in-clipboard []
   (clipboard/spit-html-to-clipboard (str "<a href=\"" (href-from-jira-issue-html (clipboard/slurp-html-from-clipboard)) "\">"
