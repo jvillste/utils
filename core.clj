@@ -10,7 +10,8 @@
   (common/notify-completion!))
 
 (def commands [#'convert-clipboard-to-plain-text
-               #'jira/clean-up-jira-issue-title-in-clipboard])
+               #'jira/clean-up-jira-issue-title-in-clipboard
+               #'jira/jira-issue-title-to-branch-name-in-clipboard])
 
 (defn -main [& command-line-arguments]
   (try (let [[command-name & arguments] command-line-arguments]
