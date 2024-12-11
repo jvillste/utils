@@ -34,9 +34,7 @@
     (str (subs cleaned-up-jira-issue-title 0 3)
          (-> cleaned-up-jira-issue-title
              (subs 3)
-             (string/replace " " "-")
-             (string/replace #"\"" "-")
-             (string/replace #"[\(\)]" "-")
+             (string/replace #"[ \"\(\)]" "-")
              (string/replace #"-{2,}" "-")
              (string/lower-case)))))
 
