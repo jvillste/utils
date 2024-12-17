@@ -34,14 +34,14 @@
     (str (subs cleaned-up-jira-issue-title 0 3)
          (-> cleaned-up-jira-issue-title
              (subs 3)
-             (string/replace #"[ \"\(\)]" "-")
+             (string/replace #"[ \"\(\)\.]" "-")
              (string/replace #"'" "")
              (string/replace #"-{2,}" "-")
              (string/lower-case)))))
 
 (deftest test-jira-issue-title-to-branch-name
-  (is (= "DET-815-some-test-issue-name"
-         (jira-issue-title-to-branch-name "DET-815\n2\nSome(test) \"issue\" - name'"))))
+  (is (= "DET-815-some-test-issue-name-e-a"
+         (jira-issue-title-to-branch-name "DET-815\n2\nSome(test) \"issue\" - name.e.a'"))))
 
 (defn jira-issue-title-to-branch-name-in-clipboard []
   (clipboard/spit-plain-text-to-clipboard (jira-issue-title-to-branch-name (clipboard/slurp-plain-text-from-clipboard)))
