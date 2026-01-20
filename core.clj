@@ -3,7 +3,8 @@
    [clipboard]
    [clojure.string :as string]
    [common]
-   [jira :as jira]))
+   [jira]
+   [git]))
 
 (defn convert-clipboard-to-plain-text []
   (clipboard/spit-plain-text-to-clipboard (string/trim (clipboard/slurp-plain-text-from-clipboard)))
@@ -11,7 +12,8 @@
 
 (def commands [#'convert-clipboard-to-plain-text
                #'jira/clean-up-jira-issue-title-in-clipboard
-               #'jira/jira-issue-title-to-branch-name-in-clipboard])
+               #'jira/jira-issue-title-to-branch-name-in-clipboard
+               #'git/show-merge-commit])
 
 (defn -main [& command-line-arguments]
   (try (let [[command-name & arguments] command-line-arguments]
